@@ -1,1 +1,1 @@
-# ML_675_Final_Project
+# Machine Learning Final Project
