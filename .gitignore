@@ -3,6 +3,14 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Other random stuff
+misc.xml
+ML_675_Final_Project.iml
+modules.xml
+profiles_settings.xml
+Project_Default.xml
+vcs.xml
+
 # C extensions
 *.so
 
