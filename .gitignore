@@ -11,6 +11,7 @@ profiles_settings.xml
 Project_Default.xml
 vcs.xml
 .idea
+data*
 
 # C extensions
 *.so
