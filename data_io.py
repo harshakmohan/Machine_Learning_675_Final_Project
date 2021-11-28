@@ -38,4 +38,3 @@ class DataLoader():
         pickle.dump(y, out)
         out.close()
 
-if __name__ == '__main__':
