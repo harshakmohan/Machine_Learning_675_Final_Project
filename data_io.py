@@ -12,7 +12,7 @@ class DataLoader():
         self.size = size
         self.categories = {'CNV': 1, 'DME': 2, 'DRUSEN': 3, 'NORMAL': 0}
 
-    def create_dataset(self, func): # func will be preprocessing function
+    def create_dataset(self, out_X, out_y, func): # func will be preprocessing function
         data = []
         for category in self.categories:
             class_num = self.categories[category]
@@ -30,11 +30,6 @@ class DataLoader():
         X = np.array(X)
         y = np.array(y)
 
-        out = open('X.npy', 'wb')
-        pickle.dump(X, out)
-        out.close()
-
-        out = open('y.npy', 'wb')
-        pickle.dump(y, out)
-        out.close()
+        np.save(out_X, X)
+        np.save(out_y, y)
 
