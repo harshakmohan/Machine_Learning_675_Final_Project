@@ -5,7 +5,7 @@ import random
 import pickle
 
 base = "./data/test_train"
-class DataLoader():
+class DataIO():
 
     def __init__(self, dir="./data/test_train", grayscale=True, size=100):
         self.base = dir
