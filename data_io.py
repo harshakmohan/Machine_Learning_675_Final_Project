@@ -4,8 +4,8 @@ import cv2 as cv
 import random
 import pickle
 
-base = "./data"
-categories = ['cnv', 'dme', 'drusen', 'normal']
+base = "./data/test_train"
+categories = ['CNV', 'DME', 'DRUSEN', 'NORMAL']
 
 def create_dataset():
     data = []
@@ -33,6 +33,5 @@ def create_dataset():
     pickle.dump(y, out)
     out.close()
 
-
-
- 
+if __name__ == '__main__':
+    create_dataset()
