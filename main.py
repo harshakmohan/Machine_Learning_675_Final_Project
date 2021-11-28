@@ -8,7 +8,7 @@ import torch
 import torch.nn.functional as F
 import numpy as np
 
-from data_io import load
+from data_io import DataLoader
 from models import CNN1, CNN2
 
 def get_args():
@@ -63,11 +63,11 @@ def train(args):
     logger.writeheader()
 
     # prepare gpu
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
     # load data
-    train_data, train_labels = load(args.data_dir, split="train")
-    dev_data, dev_labels = load(args.data_dir, split="dev")
+    train_data, train_labels = load(args.data_dir, split="train")  #TODO: Update with create_dataset
+    dev_data, dev_labels = load(args.data_dir, split="dev")  #TODO: Update with create_dataset
 
     # Build model
     if args.model.lower() == "cnn1":
