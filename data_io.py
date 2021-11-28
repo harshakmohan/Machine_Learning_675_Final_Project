@@ -7,7 +7,7 @@ from sklearn.utils import shuffle
 
 class DataIO():
 
-    def __init__(self, dir="./data/test_train", grayscale=True, size=100):
+    def __init__(self, dir="./data/dev", grayscale=True, size=100):
         self.base = dir
         self.dataset_size = size
         self.categories = {'CNV': 1, 'DME': 2, 'DRUSEN': 3, 'NORMAL': 0}
@@ -27,7 +27,6 @@ class DataIO():
         X = np.array(X)
         y = np.array(y)
         X, y = shuffle(X, y, random_state=0)
-
 
         np.save(out_X, X)
         np.save(out_y, y)
