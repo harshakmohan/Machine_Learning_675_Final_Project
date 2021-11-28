@@ -8,7 +8,7 @@ import torch
 import torch.nn.functional as F
 import numpy as np
 
-from data_io import DataLoader
+from data_io import DataIO
 from models import CNN1, CNN2
 
 def get_args():
@@ -66,32 +66,37 @@ def train(args):
     device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
     # load data
-    train_data, train_labels = load(args.data_dir, split="train")  #TODO: Update with create_dataset
-    dev_data, dev_labels = load(args.data_dir, split="dev")  #TODO: Update with create_dataset
+    io = DataIO()
+    io.create_dataset()  # creates dataset (.npy files for X and y)
+
+    train_data = np.load('X.npy', allow_pickle=True)
+    train_labels = np.load('y.npy', allow_pickle=True)
+    #train_data, train_labels = load(args.data_dir, split="train")  #TODO: Update with create_dataset
+    #dev_data, dev_labels = load(args.data_dir, split="dev")  #TODO: Update with create_dataset
 
     # Build model
     if args.model.lower() == "cnn1":
-        model = CNN1(args.ff_hunits).to(device)
+        model = CNN1().to(device)
     elif args.model.lower() == "cnn2":
         model = CNN2(args.cnn_n1_channels,
                             args.cnn_n1_kernel,
                             args.cnn_n2_kernel).to(device)
         print('model state: ', model.conv1.weight.device)
 
-    elif args.model.lower() == "cnn3":
-        model = BestNN(args.best_n1_channels,
-                       args.best_n1_kernel,
-                       args.best_n2_channels,
-                       args.best_n2_kernel,
-                       args.best_pool1,
-                       args.best_n3_channels,
-                       args.best_n3_kernel,
-                       args.best_n4_channels,
-                       args.best_n4_kernel,
-                       args.best_pool2,
-                       args.best_linear_features1,
-                       args.best_linear_features2,
-                       args.best_dropout).to(device)
+    # elif args.model.lower() == "cnn3":
+    #     model = BestNN(args.best_n1_channels,
+    #                    args.best_n1_kernel,
+    #                    args.best_n2_channels,
+    #                    args.best_n2_kernel,
+    #                    args.best_pool1,
+    #                    args.best_n3_channels,
+    #                    args.best_n3_kernel,
+    #                    args.best_n4_channels,
+    #                    args.best_n4_kernel,
+    #                    args.best_pool2,
+    #                    args.best_linear_features1,
+    #                    args.best_linear_features2,
+    #                    args.best_dropout).to(device)
     else:
         raise Exception("Unknown model type passed in!")
 

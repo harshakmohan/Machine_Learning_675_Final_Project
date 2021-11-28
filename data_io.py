@@ -12,7 +12,7 @@ class DataIO():
         self.dataset_size = size
         self.categories = {'CNV': 1, 'DME': 2, 'DRUSEN': 3, 'NORMAL': 0}
 
-    def create_dataset(self, out_X, out_y, func=None): # func will be preprocessing function
+    def create_dataset(self, out_X='X', out_y='y', func=None): # func will be preprocessing function
         data = []
         for category in self.categories:
             class_num = self.categories[category]
@@ -20,7 +20,7 @@ class DataIO():
             for img in random.choices(os.listdir(path), k=self.dataset_size):
                 img_arr = cv.imread(os.path.join(path, img), cv.IMREAD_GRAYSCALE)
                 if func:
-                    img = func(img)
+                    img_arr = func(img_arr)
                 data.append([img_arr, class_num])
         random.shuffle(data)
         X = []
@@ -35,3 +35,5 @@ class DataIO():
         np.save(out_X, X)
         np.save(out_y, y)
 
+if __name__ == '__main__':
+    DataIO().create_dataset()

@@ -1,0 +1,2 @@
+
+python3 main.py train --data-dir data/test_train --model-save modelfiles/ff.torch --model cnn1
