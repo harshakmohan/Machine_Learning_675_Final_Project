@@ -17,14 +17,13 @@ class DataIO():
         y = []
         for category in self.categories:
             class_num = self.categories[category]
-            path = os.path.join(base, category)
+            path = os.path.join(self.base, category)
             for img in random.choices(os.listdir(path), k=self.dataset_size):
                 img_arr = cv.imread(os.path.join(path, img), cv.IMREAD_GRAYSCALE)
                 if func:
                     img_arr = func(img_arr)
                 X.append(img_arr)
                 y.append(class_num)
-        random.shuffle(data)
         X = np.array(X)
         y = np.array(y)
         X, y = shuffle(X, y, random_state=0)
