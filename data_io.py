@@ -2,9 +2,9 @@ import numpy as np
 import os
 import cv2 as cv
 import random
-import pickle
+from sklearn.utils import shuffle
 
-base = "./data/test_train"
+
 class DataIO():
 
     def __init__(self, dir="./data/test_train", grayscale=True, size=100):
@@ -13,7 +13,8 @@ class DataIO():
         self.categories = {'CNV': 1, 'DME': 2, 'DRUSEN': 3, 'NORMAL': 0}
 
     def create_dataset(self, out_X='X', out_y='y', func=None): # func will be preprocessing function
-        data = []
+        X = []
+        y = []
         for category in self.categories:
             class_num = self.categories[category]
             path = os.path.join(base, category)
@@ -21,16 +22,13 @@ class DataIO():
                 img_arr = cv.imread(os.path.join(path, img), cv.IMREAD_GRAYSCALE)
                 if func:
                     img_arr = func(img_arr)
-                data.append([img_arr, class_num])
+                X.append(img_arr)
+                y.append(class_num)
         random.shuffle(data)
-        X = []
-        y = []
-        for image, label in data:
-            X.append(image)
-            y.append(label)
-
         X = np.array(X)
         y = np.array(y)
+        X, y = shuffle(X, y, random_state=0)
+
 
         np.save(out_X, X)
         np.save(out_y, y)
