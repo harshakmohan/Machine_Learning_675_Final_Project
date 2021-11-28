@@ -12,13 +12,15 @@ class DataLoader():
         self.size = size
         self.categories = {'CNV': 1, 'DME': 2, 'DRUSEN': 3, 'NORMAL': 0}
 
-    def create_dataset(self, out_X, out_y, func): # func will be preprocessing function
+    def create_dataset(self, out_X, out_y, func=None): # func will be preprocessing function
         data = []
         for category in self.categories:
             class_num = self.categories[category]
             path = os.path.join(base, category)
             for img in os.listdir(path):
                 img_arr = cv.imread(os.path.join(path, img), cv.IMREAD_GRAYSCALE)
+                if func:
+                    img = func(img)
                 data.append([img_arr, class_num])
         random.shuffle(data)
         X = []
