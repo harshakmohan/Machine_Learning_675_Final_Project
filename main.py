@@ -109,7 +109,9 @@ def train(args):
     best_dev_acc = 0.0
     for step in range(args.train_steps):
         # run the model and backprop for train steps
-        i = np.random.choice(train_data.shape[0], size=args.batch_size, replace=False)
+
+        # TODO: Change back to replace=False for real training        
+        i = np.random.choice(train_data.shape[0], size=args.batch_size, replace=True)
         x = torch.from_numpy(train_data[i].astype(np.float32)).to(device)
         y = torch.from_numpy(train_labels[i].astype(np.int64)).to(device)
         #print('x device: ', x.is_cuda)
@@ -162,7 +164,8 @@ def train(args):
 
 def approx_train_acc_and_loss(model, train_data, train_labels):
     device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-    idxs = np.random.choice(len(train_data), 4000, replace=False)
+    # TODO: change back to replace = False for traininng
+    idxs = np.random.choice(len(train_data), 4000, replace=True)
     x = torch.from_numpy(train_data[idxs].astype(np.float32)).to(device)
     y = torch.from_numpy(train_labels[idxs].astype(np.int)).to(device)
     logits = model(x).squeeze()

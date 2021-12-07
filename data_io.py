@@ -7,7 +7,7 @@ from sklearn.utils import shuffle
 
 class DataIO():
 
-    def __init__(self, dir="./dev", grayscale=True, size=100):
+    def __init__(self, dir="./dev", grayscale=True, size=4):
         self.base = dir
         self.dataset_size = size
         self.categories = {'CNV': 1, 'DME': 2, 'DRUSEN': 3, 'NORMAL': 0}
