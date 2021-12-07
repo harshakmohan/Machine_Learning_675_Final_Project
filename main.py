@@ -20,9 +20,9 @@ def get_args():
 
     # File locations
     p.add_argument("--data-dir", type=str, default="data") # TODO: Edit default data drive
-    p.add_argument("--log-file", type=str, default="simple-cnn-logs.csv") # TODO: Edit default log file
-    p.add_argument("--model-save", type=str, default="simple-cnn-model.torch") # TODO: Edit default model name
-    p.add_argument("--predictions-file", type=str, default="simple-cnn-preds.txt") # TODO: Edit default prediction file name
+    p.add_argument("--log-file", type=str, default="cnn1.csv") # TODO: Edit default log file
+    p.add_argument("--model-save", type=str, default="cnn1.torch") # TODO: Edit default model name
+    p.add_argument("--predictions-file", type=str, default="cnn1-preds.txt") # TODO: Edit default prediction file name
 
     # hyperparameters
     p.add_argument("--model", type=str, default="cnn1")
@@ -102,7 +102,7 @@ def train(args):
 
     optimizer = torch.optim.Adam(model.parameters(), lr=args.learning_rate)
 
-    # TODO: You can change this loop as you need to, to optimize your training!
+    # Can change this loop as you need to, to optimize your training!
     # for example, if you wanted to implement early stopping to make sure you
     # don't overfit your model, you would do so in this loop.
     best_model = None
@@ -111,13 +111,17 @@ def train(args):
         # run the model and backprop for train steps
         i = np.random.choice(train_data.shape[0], size=args.batch_size, replace=False)
         x = torch.from_numpy(train_data[i].astype(np.float32)).to(device)
-        y = torch.from_numpy(train_labels[i].astype(np.int)).to(device)
+        y = torch.from_numpy(train_labels[i].astype(np.int64)).to(device)
         #print('x device: ', x.is_cuda)
 
         # Forward pass: Get logits for x
         logits = model(x).squeeze() # removing .squeeze() for best neural network
         #print('logits type: ', logits.is_cuda)
-        #print('y type: ', type(y))
+        print('logits type: ', type(logits))
+        print('logits size: ', logits.size())
+        print('y type: ', type(y))
+        print('y size: ', y.size())
+
 
         # Compute loss
         #pdb.set_trace()
