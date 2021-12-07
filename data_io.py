@@ -16,7 +16,7 @@ class DataIO():
         X = []
         y = []
         for category in self.categories:
-            class_num = self.categories[category]*np.ones((30,30))
+            class_num = self.categories[category]
             path = os.path.join(self.base, category)
             for img in random.choices(os.listdir(path), k=self.dataset_size):
                 img_arr = cv.imread(os.path.join(path, img), cv.IMREAD_GRAYSCALE)
