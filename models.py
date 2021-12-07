@@ -1,8 +1,11 @@
 # Define model classes here
 
 import torch
+import gc
 import torch.nn as nn
 import torch.nn.functional as F
+gc.collect()
+torch.cuda.empty_cache()
 
 class CNN1(torch.nn.Module):
     def __init__(self, n1_chan = 80, n1_kern=10, n2_kern=5): # Define all the adjustable params here
