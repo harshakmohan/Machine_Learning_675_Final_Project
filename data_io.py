@@ -7,7 +7,7 @@ from sklearn.utils import shuffle
 
 class DataIO():
 
-    def __init__(self, dir="./data/dev", grayscale=True, size=100):
+    def __init__(self, dir="./dev", grayscale=True, size=100):
         self.base = dir
         self.dataset_size = size
         self.categories = {'CNV': 1, 'DME': 2, 'DRUSEN': 3, 'NORMAL': 0}
@@ -16,7 +16,7 @@ class DataIO():
         X = []
         y = []
         for category in self.categories:
-            class_num = self.categories[category]
+            class_num = self.categories[category]*np.ones((30,30))
             path = os.path.join(self.base, category)
             for img in random.choices(os.listdir(path), k=self.dataset_size):
                 img_arr = cv.imread(os.path.join(path, img), cv.IMREAD_GRAYSCALE)
