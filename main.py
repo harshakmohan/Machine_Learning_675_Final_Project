@@ -120,7 +120,8 @@ def train(args):
         i = np.random.choice(train_data.shape[0], size=args.batch_size, replace=True) # TODO: Change back to replace=False for real training
         x = torch.from_numpy(train_data[i].astype(np.float32)).to(device)
         y = torch.from_numpy(train_labels[i].astype(np.int64)).to(device)
-        #print('x device: ', x.is_cuda)
+        print('x device: ', x.is_cuda)
+        print('y device: ', y.is_cuda)
 
         # Forward pass: Get logits for x
         logits = model(x).squeeze() # removing .squeeze() for best neural network
