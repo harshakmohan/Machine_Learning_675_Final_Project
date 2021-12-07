@@ -145,7 +145,7 @@ def train(args):
             train_acc, train_loss = approx_train_acc_and_loss(model,
                                                               train_data,
                                                               train_labels)
-            dev_acc, dev_loss = dev_acc_and_loss(model, dev_data, dev_labels)
+            dev_acc, dev_loss = dev_acc_and_loss(model, train_data, train_labels) # changed it to train_data and train_labels
 
             if dev_acc > best_dev_acc:
                 best_model = model
