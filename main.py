@@ -73,10 +73,10 @@ def train(args):
     io.create_dataset()  # creates dataset (.npy files for X and y)
 
     train_data = np.load('X.npy', allow_pickle=True)
-    train_data = torch.from_numpy(train_data).to(device)
+    #train_data = torch.from_numpy(train_data).to(device)
 
     train_labels = np.load('y.npy', allow_pickle=True)
-    train_labels = torch.from_numpy(train_labels).to(device)
+    #train_labels = torch.from_numpy(train_labels).to(device)
     #train_data, train_labels = load(args.data_dir, split="train")  #TODO: Update with create_dataset
     #dev_data, dev_labels = load(args.data_dir, split="dev")  #TODO: Update with create_dataset
 
