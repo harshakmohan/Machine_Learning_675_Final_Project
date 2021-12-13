@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 .DS_Store
 Trained_Models
+open_model_test.py
 
 # Testing files
 test.py

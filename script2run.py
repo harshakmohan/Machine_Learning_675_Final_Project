@@ -9,10 +9,9 @@ Original file is located at
 ML FINAL PROJECT
 =============================
 
-**Author:** `Joseph Boen <timothy.joseph.boen@gmail.com>`__
 
-TODO CODE: add saving models protocol. Save at each epoch. 
-add file naming protocol. 
+TODO CODE: add saving models protocol. Save at each epoch.
+add file naming protocol.
 hyperparameters will be: 
 - dataset size
 - model name (resnet, alexnet, naive)
@@ -72,9 +71,7 @@ num_epochs = 30
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 
-
-#for train_size in [256, 1024, 4096]:
-for train_size in [256]:  # TODO: remove 512 and 2048 from this list
+for train_size in [256, 1024, 4096]: # TODO: Modulate this
 
     subsets = {}
     subsets['train'] = torch.utils.data.Subset(image_datasets['train'],
@@ -83,9 +80,8 @@ for train_size in [256]:  # TODO: remove 512 and 2048 from this list
     subsets['val'] = image_datasets['val']
     dataloaders_dict = {x: torch.utils.data.DataLoader(subsets[x], batch_size=batch_size,
                                                        shuffle=True) for x in ['train', 'val']}
-    #for model_name in ['resnet', 'alexnet']: #TODO: modify this for manual running
-    for model_name in ['resnet']: #TODO: modify this for manual running
-        for feature_type in ['scratch', 'fine_tune', 'feature_extract']: #TODO: modify this if there are
+    for model_name in ['resnet', 'alexnet']: #TODO: Modulate this
+        for feature_type in ['scratch', 'fine_tune', 'feature_extract']: #TODO: Modulate this
 
             if feature_type == 'feature_extract':
                 feature_extract = True
