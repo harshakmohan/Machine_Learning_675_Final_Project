@@ -31,6 +31,7 @@ def get_args():
     p.add_argument("--model", type=str, default="cnn1")
     p.add_argument("--train-steps", type=int, default=3500)
     p.add_argument("--batch-size", type=int, default=100)
+    p.add_argument("--img-size", type=int, default=64)
     p.add_argument("--learning-rate", type=float, default=0.001)
 
     # cnn1 hparams
@@ -39,17 +40,17 @@ def get_args():
     p.add_argument('--cnn-n2-kernel', type=int, default=5)
 
     # cnn2 hparams
-    p.add_argument('--best-n1-channels', type=int, default=80)
-    p.add_argument('--best-n1-kernel', type=int, default=5)
-    p.add_argument('--best-n2-channels', type=int, default=60)
-    p.add_argument('--best-n2-kernel', type=int, default=5)
-    p.add_argument('--best-pool1', type=int, default=2)
-    p.add_argument('--best-n3-channels', type=int, default=40)
-    p.add_argument('--best-n3-kernel', type=int, default=3)
-    p.add_argument('--best-n4-channels', type=int, default=20)
-    p.add_argument('--best-n4-kernel', type=int, default=3)
-    p.add_argument('--best-pool2', type=int, default=3)
-    p.add_argument('--best-linear-features', type=int, default=80)
+    # p.add_argument('--best-n1-channels', type=int, default=80)
+    # p.add_argument('--best-n1-kernel', type=int, default=5)
+    # p.add_argument('--best-n2-channels', type=int, default=60)
+    # p.add_argument('--best-n2-kernel', type=int, default=5)
+    # p.add_argument('--best-pool1', type=int, default=2)
+    # p.add_argument('--best-n3-channels', type=int, default=40)
+    # p.add_argument('--best-n3-kernel', type=int, default=3)
+    # p.add_argument('--best-n4-channels', type=int, default=20)
+    # p.add_argument('--best-n4-kernel', type=int, default=3)
+    # p.add_argument('--best-pool2', type=int, default=3)
+    # p.add_argument('--best-linear-features', type=int, default=80)
     return p.parse_args()
 
 
@@ -82,7 +83,7 @@ def train(args):
 
     # Build model
     if args.model.lower() == "cnn1":
-        model = CNN1().to(device)
+        model = CNN1(img_size=args.img_size).to(device)
         print('model state: ', model.conv1.weight.device)
     elif args.model.lower() == "cnn2":
         model = CNN2(args.cnn_n1_channels,

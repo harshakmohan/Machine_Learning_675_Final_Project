@@ -20,7 +20,7 @@ class DataIO():
             path = os.path.join(self.base, category)
             for img in random.choices(os.listdir(path), k=self.dataset_size):
                 img_arr = cv.imread(os.path.join(path, img), cv.IMREAD_GRAYSCALE)
-                img_arr = cv.resize(img_arr, (64,64))
+                img_arr = cv.resize(img_arr, (64, 64))
                 if func:
                     img_arr = func(img_arr)
                 X.append(img_arr)
