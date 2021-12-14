@@ -2,7 +2,6 @@
 
 import csv
 import argparse as ap
-import random
 
 import torch
 import gc
@@ -11,7 +10,7 @@ import numpy as np
 gc.collect()
 torch.cuda.empty_cache()
 
-from data_io import DataIO
+from archive.data_io import DataIO
 from models import CNN1, CNN2
 
 def get_args():

@@ -1,1 +1,0 @@
-python3 main.py train --data-dir dev --model-save modelfiles/cnn1.torch --model cnn1 --batch-size 10

@@ -1,8 +1,0 @@
-
-Build out the models and main files. Incorporate gpu acceleration
-
-Build the data loader, Figure out how to leverage transfer learning for this using ImageNet
-
-Figure out how to draw a heatmap on the images which correspond to the specific classification
-
-After the models generate an output, we need to correlate this output to the name of the actual disease.
