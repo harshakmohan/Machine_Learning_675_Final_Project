@@ -6,3 +6,4 @@ torch
 argparse
 matplotlib
 torchvision
+jupyter
